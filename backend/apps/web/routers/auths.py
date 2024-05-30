@@ -221,6 +221,7 @@ async def signup(request: Request, form_data: SignupForm):
         else:
             raise HTTPException(500, detail=ERROR_MESSAGES.CREATE_USER_ERROR)
     except Exception as err:
+        logging.exception(f'Unable to register user: {err} {type(err)}')
         raise HTTPException(500, detail=ERROR_MESSAGES.DEFAULT(err))
 
 
